@@ -9,23 +9,19 @@ pipeline {
                         }
                         stage('Descargar wp') {
                             steps {
+                                sh 'wget -O wordpressinstall.zip https://es.wordpress.org/latest-es_ES.zip'
+                                sh 'mkdir wp || true'
+                                sh 'unzip wordpressinstall.zip ./wp'
+                                
                                 
                             }
                         }
-                        stage('Montar docker') {
+                        stage('Deploy Montar docker') {
                             steps {
                                 echo 'Contruyendo...'
                                 
                                 sh 'docker-compose up -d'
                                 
-                            }
-                        }
-                        stage('Deploy') {
-                            steps {
-                                echo 'Desplegando'
-                                
-                                
-                        
                             }
                         }
                 }
