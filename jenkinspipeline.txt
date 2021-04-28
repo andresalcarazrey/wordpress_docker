@@ -4,14 +4,16 @@ pipeline {
                         stage('Descargar ficheros configuración') {
                             steps {
                                 echo 'descargando...'
-                                git 'https://github.com/andresalcarazrey/wordpress_docker.git'
+                                sh 'rm -R .* || true'
+                                sh 'rm -R * || true'
+                                sh 'git clone https://github.com/andresalcarazrey/wordpress_docker.git .'
                             }
                         }
                         stage('Descargar wp') {
                             steps {
                                 sh 'wget -O wordpressinstall.zip https://es.wordpress.org/latest-es_ES.zip'
                                 sh 'mkdir wp || true'
-                                sh 'unzip wordpressinstall.zip ./wp'
+                                sh 'unzip wordpressinstall.zip -d wp'
                                 
                                 
                             }
