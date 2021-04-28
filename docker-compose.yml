@@ -10,7 +10,7 @@ services:
       - ./wp:/var/www/html
       - ./apache/logs:/var/log/apache2
     depends_on:
-      - "MiGestorBD"
+      - "bbdd"
 
   bbdd:
     image: mysql:5.6
@@ -32,6 +32,6 @@ services:
       PMA_USER: "root"
       PMA_PASSWORD: "secret"
     depends_on:
-      - "MiGestorBD"
+      - "bbdd"
     ports:
       - "8081:80"
